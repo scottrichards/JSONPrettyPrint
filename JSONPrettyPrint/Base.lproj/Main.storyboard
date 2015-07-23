@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,37 +17,58 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="JSON Pretty Print" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iDf-Ua-hJ9">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JSON Pretty Print" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iDf-Ua-hJ9">
                                 <rect key="frame" x="232" y="28" width="136" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="JSON URL:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3tU-Xe-PrX">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JSON URL:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3tU-Xe-PrX">
                                 <rect key="frame" x="23" y="72" width="89" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="89" id="oN5-Bz-xn3"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="http://plickers-interview.herokuapp.com/polls" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="33v-IJ-Yls">
-                                <rect key="frame" x="120" y="68" width="452" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gOS-Gy-jmc">
-                                <rect key="frame" x="23" y="159" width="549" height="421"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gOS-Gy-jmc">
+                                <rect key="frame" x="29" y="166" width="543" height="414"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qcI-Td-RJr">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qcI-Td-RJr">
                                 <rect key="frame" x="259" y="115" width="77" height="30"/>
                                 <state key="normal" title="Pretty Print">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="onPrettyPrint:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="sXU-Eh-4tu"/>
+                                </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="http://plickers-interview.herokuapp.com/polls" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="33v-IJ-Yls">
+                                <rect key="frame" x="120" y="65" width="452" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="gOS-Gy-jmc" secondAttribute="trailing" constant="12" id="4N7-iz-rs5"/>
+                            <constraint firstItem="qcI-Td-RJr" firstAttribute="top" secondItem="33v-IJ-Yls" secondAttribute="bottom" constant="14" id="7pG-dq-Rxi"/>
+                            <constraint firstItem="3tU-Xe-PrX" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="7" id="IGW-Ku-JGb"/>
+                            <constraint firstItem="33v-IJ-Yls" firstAttribute="leading" secondItem="3tU-Xe-PrX" secondAttribute="trailing" constant="8" id="IhP-gX-6Nb"/>
+                            <constraint firstAttribute="centerX" secondItem="qcI-Td-RJr" secondAttribute="centerX" id="TKG-GR-LWW"/>
+                            <constraint firstItem="iDf-Ua-hJ9" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="ZUj-f0-YxO"/>
+                            <constraint firstAttribute="centerX" secondItem="iDf-Ua-hJ9" secondAttribute="centerX" id="bXn-Fe-QEb"/>
+                            <constraint firstItem="gOS-Gy-jmc" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="13" id="bzM-IR-iQE"/>
+                            <constraint firstItem="3tU-Xe-PrX" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="52" id="fch-Ez-LSK"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="gOS-Gy-jmc" secondAttribute="bottom" constant="20" id="jCU-Fs-LKM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="33v-IJ-Yls" secondAttribute="trailing" constant="12" id="lY7-xb-NVg"/>
+                            <constraint firstItem="gOS-Gy-jmc" firstAttribute="top" secondItem="qcI-Td-RJr" secondAttribute="bottom" constant="21" id="pih-35-8fE"/>
+                            <constraint firstItem="33v-IJ-Yls" firstAttribute="top" secondItem="iDf-Ua-hJ9" secondAttribute="bottom" constant="16" id="sS3-wz-K6H"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="jsonURLField" destination="33v-IJ-Yls" id="nKx-Kv-Jr6"/>
