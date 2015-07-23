@@ -47,7 +47,7 @@
                                     <action selector="onPrettyPrint:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="sXU-Eh-4tu"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="http://plickers-interview.herokuapp.com/polls" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="33v-IJ-Yls">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="http://coinabul.com/api.php" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="33v-IJ-Yls">
                                 <rect key="frame" x="120" y="65" width="452" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>

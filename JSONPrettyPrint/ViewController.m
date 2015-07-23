@@ -50,7 +50,7 @@
         
         if (error) {
             NSLog(@"Received an error: %@",error.description);
-            [self outputResults:@"Received an ERROR.  Make sure it is a valid url and you have an interent connection."];
+            [self performSelectorOnMainThread:@selector(outputResults:) withObject:@"Received an ERROR.  Make sure it is a valid url and you have an interent connection." waitUntilDone:0];
         } else {
             [self parseJSONData:data];
         }
@@ -64,17 +64,18 @@
     _prettyString = @"";
     NSJSONReadingOptions options = NSJSONReadingMutableContainers;
     id object = [NSJSONSerialization JSONObjectWithData:data options:options error:&error];
+    
     if (error) {
         NSLog(@"Error Parsing JSON Data");
-        [self outputResults:@"Error Parsing JSON Data. Make sure the url points to a valid JSON file."];
+        [self performSelectorOnMainThread:@selector(outputResults:) withObject:@"Error Parsing JSON Data. Make sure the url points to a valid JSON file." waitUntilDone:0];
     } else {
         if ([object isKindOfClass:[NSDictionary class]]) {
             [self parseJSONDictionary:(NSDictionary *)object depth:0];
         } else if ([object isKindOfClass:[NSArray class]]) {
             [self parseJSONArray:(NSArray *)object depth:0];
         }
-        [self performSelectorOnMainThread:@selector(outputResults:) withObject:_prettyString waitUntilDone:0];
         NSLog(@"%@",_prettyString);
+        [self performSelectorOnMainThread:@selector(outputResults:) withObject:_prettyString waitUntilDone:0];
     }
 }
 
@@ -93,7 +94,12 @@
             [self formatString:outputStr depth:depth];
         } else if ([value isKindOfClass:[NSNumber class]]) {
             NSNumber *number = value;
-            NSString *outputStr = [NSString stringWithFormat:@"\"%@\" : %ld",key,(long)[number integerValue]];
+            NSString *outputStr;
+            if (CFNumberIsFloatType((CFNumberRef)number)) {
+                outputStr = [NSString stringWithFormat:@"\"%@\" : %f",key,(float)[number floatValue]];
+            } else {
+                outputStr = [NSString stringWithFormat:@"\"%@\" : %ld",key,(long)[number integerValue]];
+            }
             [self formatString:outputStr depth:depth];
         } else if ([value isKindOfClass:[NSDictionary class]]) {
             NSString *keyString = [NSString stringWithFormat:@"\"%@\" :",key];
