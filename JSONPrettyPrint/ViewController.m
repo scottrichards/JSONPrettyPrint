@@ -54,7 +54,7 @@
         } else if ([object isKindOfClass:[NSArray class]]) {
             [self parseJSONArray:(NSArray *)object depth:0];
         }
- //       _resultsTextView.text = _prettyString;
+        [self performSelectorOnMainThread:@selector(outputResults:) withObject:_prettyString waitUntilDone:0];
         NSLog(@"%@",_prettyString);
     }
 }
@@ -136,6 +136,11 @@
 
     _prettyString = [_prettyString stringByAppendingString:formattedString];
     return formattedString;
+}
+
+- (void)outputResults:(NSString *)results
+{
+    [_resultsTextView setText:results];
 }
 
 - (void)didReceiveMemoryWarning {
